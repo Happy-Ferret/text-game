@@ -13,12 +13,12 @@ namespace CHAR
   string name = "BOB";
   void leveling ()
   {
-    if (xp >= 100)
-  {  
+    if (xp >= 100; 
     level++;
     maxhp = maxhp + 7;
     hp = maxhp;
     xp = 0;
+  }
   }
     
   }
