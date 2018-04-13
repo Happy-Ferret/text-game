@@ -8,21 +8,41 @@ namespace item
   struct it
   {
     std::deque < std::string > inventory;
+    std::deque <int> dam;
+    std::deque < std::string > info;
   } magic, weapon, armor, quest, other;
     std::deque < std::string > items;
-  void additem (std::string newitem, int type)
+  
+  
+  void additem (std::string newitem, int type,int dam,std::string infof)
   {
 
     items.push_back (newitem);
     if (type == 1)
-      weapon.inventory.push_back (newitem);
+     {
+    weapon.inventory.push_back (newitem);
+    weapon.dam.push_back (dam);
+    weapon.info.push_back (infof);
+     }
     else if (type == 2)
+    {
       armor.inventory.push_back (newitem);
+      armor.dam.push_back (dam);
+      armor.info.push_back (infof);
+    }
     else if (type == 3)
+    {
       magic.inventory.push_back (newitem);
+      magic.dam.push_back (dam);
+      magic.info.push_back (infof);
+    }
     else if (type == 4)
-      other.inventory.push_back (newitem);
-  }
+    {
+    other.inventory.push_back (newitem);
+    other.dam.push_back (dam);
+    other.info.push_back (infof);
+    } 
+}
   void printitems (int type)
   {
     if (type == 1)

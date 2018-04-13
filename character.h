@@ -14,10 +14,13 @@ namespace CHAR
   void leveling ()
   {
     if (xp >= 100)
-      level++;
+  {  
+    level++;
     maxhp = maxhp + 7;
     hp = maxhp;
     xp = 0;
+  }
+    
   }
 }
 #endif

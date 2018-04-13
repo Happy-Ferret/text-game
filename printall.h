@@ -3,20 +3,18 @@
 void
 baseitems ()
 {
-  item::additem ("fist", 1);
-  item::additem ("axe", 1);
-  item::additem ("simple-helmet", 2);
-  item::additem ("simple-armor", 2);
+  item::additem ("fist", 1,5,"What do you think it is?\n Its just a fist\n");
+  item::additem ("axe", 1,12,"Use it to chop down trees, or people's heads, your choice\n");
+  item::additem ("simple helmet", 2,3,"Put it on your head, it'll work until you get something else\n");
+  item::additem ("simple armor", 2,5,"Simple armor that prevents someone from stabbing you with a twig\n");
 }
 
 int
 printall ()
 {
-  for (int i = 1; i <= 6; i++)
-    item::printitems (i);
+  item::printitems (6);
   save ();
   load ();
-  CHAR::xp = 101;
   CHAR::leveling ();
   std::cout << CHAR::name << std::endl;
   std::cout << CHAR::xp << std::endl;
