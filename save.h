@@ -1,7 +1,6 @@
 #ifndef SAVE_H_
 #define SAVE_H_
 #include <fstream>
-#include <sstream>
 #include "character.h"
 using namespace std;
 void
@@ -17,8 +16,6 @@ load ()
   load>>CHAR::maxhp;
   getline(load, dummy);
   load>>CHAR::hp;
-  //getline(load, dummy);
-  //load>>CHAR::level;
 }
 
 void
