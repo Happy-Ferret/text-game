@@ -16,6 +16,7 @@ Game::Game(std::string Name)
     locations["house"]="house.png";
     locations["city"]="city.png";
     locations["alley"]="alley.png";
+    locations["ex"]="house.png";
     name = Name;
     SDL_Init(SDL_INIT_VIDEO);
     SDL_CreateWindowAndRenderer(200,500,0,&Mapwin,&Mapren);
@@ -36,7 +37,11 @@ void Game::loop()
   running = true;   
   for(int i = 0; i< 150;i++){
     int iter = 0;
-    getInput();
+    std::string ret = getInput();
+    if(ret=="\xF1"){
+      std::cerr << ret << std::endl;
+      this->~Game();
+    }
     render(&Mapren,false);
     std::cout << str.size() << "\t" << str << std::endl;
     render(&Mainren,true);
@@ -182,36 +187,29 @@ const char * getInput()
     }
     if(e.type == SDL_QUIT)
     {
+      std::cout << "Quiting "<< std::endl;
       SDL_Quit();
+      return("/xF1");
     }
     if(e.type == SDL_MOUSEBUTTONDOWN)
     {
       int mouseX,mouseY;
       SDL_GetMouseState(&mouseX, &mouseY);
       if(houseButton)
-      {
         img = locations["house"];
-        std::cout << "=============================" << std::endl;
-        std::cout << "x = " << mouseX << " y = " << mouseY << std::endl;
-        std::cout << "=============================" << std::endl;
-        return "";
+      if(exButton){
+        img = locations["ex"];
+        std::cout << "EX" << std::endl;
       }
       if(cityButton)
-      {
         img = locations["city"];
-        std::cout << "=============================" << std::endl;
-        std::cout << "x = " << mouseX << " y = " << mouseY << std::endl;
-        std::cout << "=============================" << std::endl;
-        return "";
-      }
       if(alleyButton)
-      {
         img = locations["alley"];
-        std::cout << "=============================" << std::endl;
-        std::cout << "x = " << mouseX << " y = " << mouseY << std::endl;
-        std::cout << "=============================" << std::endl;
-        return "";
-      }
+      
+      std::cerr << "=============================" << std::endl;
+      std::cerr << "x = " << mouseX << " y = " << mouseY << "\timg:"<< img << std::endl;
+      std::cerr << "=============================" << std::endl;
+      return "";
     }
   }
   return str.c_str();
@@ -283,7 +281,6 @@ void Game::display(std::string img, SDL_Renderer**ren)
   SDL_Rect src;
   if(ren == &Mainren)
   {
-  std::cout << "main" << std::endl;
   src.x = 0;
   src.y = 0;
   src.w = 500;
@@ -295,7 +292,6 @@ void Game::display(std::string img, SDL_Renderer**ren)
   }
   else if(ren == &Mapren)
   {
-  std::cout << "map" << std::endl;
   src.x = 0;
   src.y = 0;
   src.w = 200;
